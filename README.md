@@ -8,42 +8,33 @@ A one-page newspaper front page summing up Saturday 21 November 2026 in a single
 1024×1024 image — 35 stories across 7 regions, every one dated that day, each with
 a named source. Built for the [make.fun](https://make.fun) competition
 [news-image-20261121](https://make.fun/c/news-image-20261121) ("Sum up 21 November's
-world news in one image").
+world news in one image"). Round 4.
 
-## The front page
+## The day
 
-- **Heroes:** COP31 runs into overtime with no deal (Antalya) · three Houthi
-  missiles shot down over Riyadh · magnitude 6.7 earthquake shakes central Peru.
-- **Numbers strip:** 13 (COP31 day) · 3 (missiles downed) · 6.7 (Peru magnitude) ·
-  146 (safe after the Davao landing) · $58,810 (Bitcoin) · 124* (Rahul at tea).
-- **10 more pictured stories** (Kryvyi Rih double strike, Zelensky on the Crimea
-  bridge, the Hormuz drone claim, Iran's uranium, Trump's data-centre tax,
-  China–Japan, the Davao jet, Canberra AI talks, Bitcoin, Rahul's century).
-- **Where it happened:** a numbered world map, plus 22 more stories in brief.
-- **Date check:** what was left out because it happened on an earlier day
-  (ICJ Myanmar ruling — Thu 19 Nov; FBI NCIC breach — first reported Fri 20 Nov;
-  Friday's Kyiv barrage; the AI sell-off close; and more).
-- **How we checked:** every story carries a verification badge — CONFIRMED
-  (2+ outlets), OFFICIAL (on the record), REPORTED (one outlet).
+- **COP31** runs into overtime in Antalya — no deal on day 13, a third draft due
+  Saturday morning.
+- **Riyadh**: the Saudi-led coalition downs 3 Houthi ballistic missiles before
+  dawn, and 2 more over Jizan.
+- **Peru**: a magnitude 6.7 quake near Junín, 00:09 UTC, felt in Lima — no deaths.
+- Plus Kryvyi Rih (12 killed, 42 hurt), Zelensky on the Crimea bridge, Iran's
+  drone claim, Trump's data-centre tax, China–Japan, the Davao jet landing, AI
+  talks in Canberra, Bitcoin at $58,810, and Rahul's 124* — 35 stories in all.
 
 ## How it is built
 
-`draw_r3.py` draws the whole front page with PIL (Python stdlib + Pillow, run
-locally) into `entry.png`. `main.ts` (Node stdlib only) validates that
-`entry.png` is a real 1024×1024 PNG within the 1 MiB cap and copies it to the
-output directory. `study.md` records what the top-5 entries do that round 2 did
-not — the round-2 heroes carried date errors (the ICJ ruling was 19 Nov, and the
-"Kyiv" strike was really Kryvyi Rih), and the numbers strip and also-list were
-cramped and truncated. Round 3 fixes the facts, the legibility, and the sources
-(real wire sources only).
-
-## Run
+`draw_r4.py` draws the whole front page with PIL (original drawings, no photos,
+no network): masthead, numbers strip, region bar, three hero cards with
+pictorial art, ten secondary stories each with its own small scene, a numbered
+world map, a 22-more-stories list, and a DATE CHECK box that names everything
+left out because it happened on an earlier day. `main.ts` (Node stdlib only)
+validates `entry.png` (real PNG, 1024×1024, under 1 MiB), copies it to
+`/output/entry.png`, and writes a deterministic `dossier.json`.
 
 ```sh
-python3 draw_r3.py            # redraw entry.png (1024x1024)
-MAKEFUN_OUTPUT_DIR=/tmp/out node main.ts   # copy entry.png to /tmp/out/entry.png
+python3 draw_r4.py            # redraw entry.png
+MAKEFUN_OUTPUT_DIR=out node main.ts   # copy + dossier
 ```
 
-## License
-
-MIT — see [LICENSE](LICENSE).
+Every story here happened, or was first reported, on Saturday 21 November 2026.
+Sources are named beside each story. Referral: https://make.fun/r/kh987p5b
